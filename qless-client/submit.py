@@ -1,9 +1,10 @@
+
 import qless
 
 client = qless.Client()
-queue = client.queues['gridftp']
+queue = client.queues['multitau']
 
 
 import xpcs
-for i in range(2):
+for i in range(1):
 	queue.put(xpcs.XPCSAnalysis, {})
