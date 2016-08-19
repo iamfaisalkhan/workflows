@@ -1,3 +1,12 @@
 [submodule "qless-py"]
 	path = qless-py
 	url = https://github.com/n-log-n/qless-py.git
+[submodule "qless"]
+	path = qless
+	url = https://github.com/seomoz/qless.git
+[submodule "qless-pyapi"]
+	path = qless-pyapi
+	url = https://github.com/w3datagmbh/qless-pyapi.git
+[submodule "startbootstrap-sb-admin-2"]
+	path = startbootstrap-sb-admin-2
+	url = https://github.com/BlackrockDigital/startbootstrap-sb-admin-2.git

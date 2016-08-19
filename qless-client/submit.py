@@ -1,10 +1,11 @@
-
 import qless
+import xpcs
 
 client = qless.Client()
-queue = client.queues['multitau']
+job1_id = client.queues['multitau'].put(xpcs.XPCSAnalysis, {'arg':1})
+job2_id = client.queues['gridftp'].put(xpcs.XPCSAnalysis, {'arg': 2}, depends=[job1_id])
+job3_id = client.queues['plot'].put(xpcs.XPCSAnalysis, {'arg': 3}, depends=[job1_id, job2_id])
 
 
-import xpcs
-for i in range(1):
-	queue.put(xpcs.XPCSAnalysis, {})
+# for i in range(1):
+# 	queue.put(xpcs.XPCSAnalysis, {})

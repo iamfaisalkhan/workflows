@@ -1,6 +1,7 @@
 import subprocess
 import time
 import atexit
+import os
 
 from process import Process
 
@@ -19,7 +20,7 @@ class XPCSAnalysis(object):
         atexit.register(cleanUp)
 
         global proc
-        proc = Process('/local/fkhan/src/XPCS/xpcs-pipeline-dev/workflows/qless-client', 'shell.sh', ['15'])
+        proc = Process(os.environ['EXE_DIR'], 'shell.sh', ['15'])
         proc.start()
 
         print("Testing heartbeat")
@@ -30,4 +31,14 @@ class XPCSAnalysis(object):
             time.sleep(2)
             job.heartbeat()
 
+        job.complete()
+
+    @staticmethod
+    def gridftp(job):
+        time.sleep(5)
+        job.complete()
+
+    @staticmethod
+    def plot(job):
+        time.sleep(6)
         job.complete()
