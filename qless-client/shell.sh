@@ -10,5 +10,6 @@
 #     sleep 10s
 # done
 
-cd XPCS_HADOOP_DIR
+#cd $XPCS_HADOOP_DIR
+cd /home/xpcs/xpcs-0.5.0/
 ./multitau.sh -i $1

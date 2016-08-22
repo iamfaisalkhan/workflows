@@ -17,21 +17,26 @@ class XPCSAnalysis(object):
 
     @staticmethod
     def multitau(job):
-        atexit.register(cleanUp)
 
         global proc
-        proc = Process(os.environ['EXE_DIR'], 'shell.sh', ['15'])
+        proc = Process(os.environ['EXE_DIR'], 'multitau.sh', ['-i', job['i']])
         proc.start()
-
-        print("Testing heartbeat")
 
         time_last_heartbeat = 0
 
-        while proc.isAlive():
-            time.sleep(2)
-            job.heartbeat()
+	try:
+           while proc.isAlive():
+  	       print "Process id %d"%(os.getpid())
+               time.sleep(10)
+               job.heartbeat()
 
-        job.complete()
+    	   if (proc.retcode != 0):
+	       job.fail("Child process failed", "error")
+    	   else:
+	       job.complete()	
+	except:
+		cleanUp()
+		exit(1)
 
     @staticmethod
     def gridftp(job):
