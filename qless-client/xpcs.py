@@ -75,19 +75,21 @@ class XPCSAnalysis(object):
         print args
         logger.info("Launching globus_url_copy with source=%s and dest=%s " %(source, dest))
 
-        proc = Process('globus_url_copy', args)
-        proc.start()
+        job.complete()
 
-        try:
-            while proc.isAlive():
-                job.heartbeat()
-                time.sleep(25)
+        # proc = Process('globus_url_copy', args)
+        # proc.start()
 
-            if proc.retcode != 0:
-                job.fail("exit(1)", "error")
-            else:
-                job.complete()
-        except:
-            cleanUp()
-            exit(1)
+        # try:
+        #     while proc.isAlive():
+        #         job.heartbeat()
+        #         time.sleep(25)
+
+        #     if proc.retcode != 0:
+        #         job.fail("exit(1)", "error")
+        #     else:
+        #         job.complete()
+        # except:
+        #     cleanUp()
+        #     exit(1)
         
