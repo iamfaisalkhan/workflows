@@ -59,37 +59,40 @@ class XPCSAnalysis(object):
 
         args = []
 
-        if 'source' in job:
-            args.append(job['source'])
-        else:
-            job.fail("Input arguments", "The source files parameter missing from job definition")
+        # if 'source' in job:
+        #     args.append(job['source'])
+        # else:
+        #     job.fail("Input arguments", "The source files parameter missing from job definition")
 
-        if 'dest' in job:
-            args.append(job['dest'])
-        else:
-            job.fail("Input arguments", "The destinition file parameter missing from job definition")
+        # if 'dest' in job:
+        #     args.append(job['dest'])
+        # else:
+        #     job.fail("Input arguments", "The destinition file parameter missing from job definition")
 
-        if 'args' in job:
-            args = job['args'].split( ) + args
+        # if 'args' in job:
+        #     args = job['args'].split( ) + args
 
-        print args
-        logger.info("Launching globus_url_copy with source=%s and dest=%s " %(source, dest))
+        # print args
+        # logger.info("Launching globus_url_copy with source=%s and dest=%s " %(source, dest))
 
-        job.complete()
+        # job.complete()
 
-        # proc = Process('globus_url_copy', args)
-        # proc.start()
+        args.append(job['source'])
+        args.append(job['dest'])
 
-        # try:
-        #     while proc.isAlive():
-        #         job.heartbeat()
-        #         time.sleep(25)
+        proc = Process('globus_url_copy', args)
+        proc.start()
 
-        #     if proc.retcode != 0:
-        #         job.fail("exit(1)", "error")
-        #     else:
-        #         job.complete()
-        # except:
-        #     cleanUp()
-        #     exit(1)
+        try:
+            while proc.isAlive():
+                job.heartbeat()
+                time.sleep(25)
+
+            if proc.retcode != 0:
+                job.fail("exit(1)", "error")
+            else:
+                job.complete()
+        except:
+            cleanUp()
+            exit(1)
         
