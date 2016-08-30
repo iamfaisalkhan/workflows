@@ -31,6 +31,7 @@ class Process(threading.Thread):
 
     def run(self):
         if self.command == None:
+	    return
 
         args = [self.command] + self.args
 

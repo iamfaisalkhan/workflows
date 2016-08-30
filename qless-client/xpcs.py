@@ -72,6 +72,7 @@ class XPCSAnalysis(object):
         if 'args' in job:
             args = job['args'].split( ) + args
 
+        print args
         logger.info("Launching globus_url_copy with source=%s and dest=%s " %(source, dest))
 
         proc = Process('globus_url_copy', args)
