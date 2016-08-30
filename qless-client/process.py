@@ -21,7 +21,6 @@ class Process(threading.Thread):
         if self.ID == None:
             self.ID = uuid.uuid1()
         
-        self.parent_dir = script_dir
         # TODO: If commands doesn't exist, we can bailout here. 
         self.command = command
         self.args = args
