@@ -80,7 +80,9 @@ class XPCSAnalysis(object):
         args.append(job['source'])
         args.append(job['dest'])
 
-        proc = Process('globus_url_copy', args)
+        command = "%s/%s"%(os.environ['QLESS_DIR'], 'gridftp.sh')
+
+        proc = Process(command, args)
         proc.start()
 
         try:
