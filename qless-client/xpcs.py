@@ -25,15 +25,17 @@ class XPCSAnalysis(object):
         command = "%s/%s"%(os.environ['EXE_DIR'], 'multitau.sh')
         
         args = []
-        if 'input' in job:
-            args.append('-i')
-            args.append(job['input'])
-        else:
-            job.fail("Input argument", "Input file path is missing from job definition")
+        # if 'input' in job:
+        #     args.append('-i')
+        #     args.append(job['input'])
+        # else:
+        #     job.fail("Input argument", "Input file path is missing from job definition")
 
-        if 'endpoint' in job:
-            args.append('-e')
-            args.append(job['endpoint'])
+        # if 'endpoint' in job:
+        #     args.append('-e')
+        #     args.append(job['endpoint'])
+
+        args.append(job['input'])
 
         proc = Process(command, args)
         proc.start()
