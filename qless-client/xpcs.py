@@ -35,6 +35,7 @@ class XPCSAnalysis(object):
         #     args.append('-e')
         #     args.append(job['endpoint'])
 
+        args.append('-i')
         args.append(job['input'])
 
         proc = Process(command, args)
